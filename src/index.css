@@ -1,10 +1,8 @@
 :root {
-  /* Typography */
   font-family: Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  /* Colors */
   --primary-color: #0078d4;
   --hover-color: #005a9e;
   --danger-color: #d9534f;
@@ -13,7 +11,6 @@
   --bg-color: #f9f9f9;
   --input-border-color: #ddd;
 
-  /* Spacing */
   --border-radius: 4px;
   --padding: 10px;
 }
@@ -32,7 +29,6 @@ body {
   box-sizing: border-box;
 }
 
-/* Headings */
 h1 {
   font-size: 3.2rem;
   line-height: 1.1;
@@ -45,7 +41,6 @@ h3 {
   color: var(--text-color);
 }
 
-/* Links */
 a {
   font-weight: 500;
   color: var(--primary-color);
@@ -58,7 +53,6 @@ a:hover {
   color: var(--hover-color);
 }
 
-/* Buttons */
 button {
   border-radius: var(--border-radius);
   border: 1px solid transparent;
@@ -89,7 +83,6 @@ button.danger:hover {
   background-color: var(--danger-hover-color);
 }
 
-/* Inputs and Selects */
 input,
 select {
   padding: var(--padding);
@@ -107,7 +100,6 @@ select:focus {
   outline-offset: 2px;
 }
 
-/* Form Layout */
 form {
   display: flex;
   flex-wrap: wrap;
@@ -126,7 +118,6 @@ form button {
   flex: 0;
 }
 
-/* Grid Action Buttons */
 .grid-action-buttons {
   display: flex;
   justify-content: center;

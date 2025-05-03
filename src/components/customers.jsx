@@ -4,7 +4,6 @@ import { ClientSideRowModelModule } from "ag-grid-community";
 import CustomerGrid from "./CustomerGrid";
 import CustomerForm from "./CustomerForm";
 
-// Register modules once outside the component
 ModuleRegistry.registerModules([ClientSideRowModelModule]);
 
 const INITIAL_CUSTOMER = {
@@ -55,7 +54,7 @@ export default function Customer() {
     ];
 
     const fetchCustomers = useCallback(() => {
-        fetch("https://customer-rest-service-frontend-personaltrainer.2.rahtiapp.fi/api/customers")
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/customers`)
             .then((res) => res.json())
             .then((data) => setCustomers(data._embedded.customers))
             .catch((err) => console.error(err));
@@ -76,7 +75,7 @@ export default function Customer() {
     };
 
     const addCustomer = () => {
-        fetch("https://customer-rest-service-frontend-personaltrainer.2.rahtiapp.fi/api/customers", {
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/customers`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -151,12 +150,41 @@ export default function Customer() {
         setShowEditForm(false);
     };
 
+    const exportToCSV = () => {
+        const csvData = customers.map(({ firstname, lastname, email, phone, streetaddress, postcode, city }) => ({
+            firstname,
+            lastname,
+            email,
+            phone,
+            streetaddress,
+            postcode,
+            city,
+        }));
+
+        const csvContent =
+            "data:text/csv;charset=utf-8," +
+            ["First Name,Last Name,Email,Phone,Street Address,Postcode,City"]
+                .concat(csvData.map((row) => Object.values(row).join(",")))
+                .join("\n");
+
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "customers.csv");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
+
     return (
         <div>
             <CustomerGrid customers={customers} columnDefs={columnDefs} gridRef={gridRef} />
             <div style={{ margin: "20px" }}>
                 <button onClick={() => setShowAddForm(true)} style={{ backgroundColor: "#0078d4", color: "white", padding: "10px 20px", borderRadius: "4px", cursor: "pointer" }}>
                     Add New Customer
+                </button>
+                <button onClick={exportToCSV} style={{ backgroundColor: "#4CAF50", color: "white", padding: "10px 20px", borderRadius: "4px", cursor: "pointer", marginLeft: "10px" }}>
+                    Export to CSV
                 </button>
             </div>
             {showAddForm && (

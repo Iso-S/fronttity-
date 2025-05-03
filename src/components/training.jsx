@@ -62,10 +62,7 @@ export default function Training() {
 
     const getTrainings = async () => {
         try {
-            const response = await fetch(
-                "https://customer-rest-service-frontend-personaltrainer.2.rahtiapp.fi/api/trainings",
-                { method: "GET" }
-            );
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/trainings`);
             const responseData = await response.json();
             const trainings = responseData._embedded.trainings;
 
@@ -103,10 +100,7 @@ export default function Training() {
 
     const getCustomers = async () => {
         try {
-            const response = await fetch(
-                "https://customer-rest-service-frontend-personaltrainer.2.rahtiapp.fi/api/customers",
-                { method: "GET" }
-            );
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/customers`);
             const responseData = await response.json();
             setCustomers(responseData._embedded.customers);
         } catch (error) {
@@ -116,16 +110,13 @@ export default function Training() {
 
     const addTraining = async () => {
         try {
-            const response = await fetch(
-                "https://customer-rest-service-frontend-personaltrainer.2.rahtiapp.fi/api/trainings",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(newTraining),
-                }
-            );
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/trainings`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(newTraining),
+            });
 
             if (response.ok) {
                 getTrainings();
