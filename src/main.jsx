@@ -11,11 +11,12 @@ import TrainingCalendar from "./components/Calendar.jsx";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <HashRouter>
-    <App />
     <Routes>
-      <Route path="/customers" element={<Customer />} />
-      <Route path="/training" element={<Training />} />
-      <Route path="/calendar" element={<TrainingCalendar />} />
+      <Route path="/" element={<App />}>
+        <Route path="/customers" element={<Customer />} />
+        <Route path="/training" element={<Training />} />
+        <Route path="/calendar" element={<TrainingCalendar />} />
+      </Route>
     </Routes>
   </HashRouter>
 );
