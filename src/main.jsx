@@ -4,8 +4,8 @@ import App from "./App.jsx";
 import "./index.css";
 import { HashRouter, Route, Routes } from "react-router-dom";
 
-import Training from "./components/Training.jsx";
-import Customer from "./components/Customers.jsx";
+import Training from "./components/training.jsx";
+import Customer from "./components/customers.jsx";
 import TrainingCalendar from "./components/Calendar.jsx"; 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
