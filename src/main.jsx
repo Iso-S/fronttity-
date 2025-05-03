@@ -1,6 +1,5 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
 import "./index.css";
 import { HashRouter, Route, Routes } from "react-router-dom";
 
@@ -12,11 +11,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <HashRouter>
     <Routes>
-      <Route path="/" element={<App />}>
         <Route path="/customers" element={<Customer />} />
         <Route path="/training" element={<Training />} />
         <Route path="/calendar" element={<TrainingCalendar />} />
-      </Route>
     </Routes>
   </HashRouter>
 );
