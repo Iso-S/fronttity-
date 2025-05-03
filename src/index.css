@@ -1,68 +1,161 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* Typography */
+  font-family: Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* Colors */
+  --primary-color: #0078d4;
+  --hover-color: #005a9e;
+  --danger-color: #d9534f;
+  --danger-hover-color: #c9302c;
+  --text-color: #333;
+  --bg-color: #f9f9f9;
+  --input-border-color: #ddd;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  /* Spacing */
+  --border-radius: 4px;
+  --padding: 10px;
 }
 
 body {
   margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-family);
   display: flex;
-  place-items: center;
-  min-width: 320px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   min-height: 100vh;
+  box-sizing: border-box;
 }
 
+/* Headings */
 h1 {
-  font-size: 3.2em;
+  font-size: 3.2rem;
   line-height: 1.1;
+  margin-bottom: 1.5rem;
 }
 
+h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+/* Links */
+a {
+  font-weight: 500;
+  color: var(--primary-color);
+  text-decoration: none;
+  padding: 0.25rem 0;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--hover-color);
+}
+
+/* Buttons */
 button {
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+  padding: var(--padding);
+  font-size: 0.9rem;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--primary-color);
+  color: white;
   cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+button:hover {
+  background-color: var(--hover-color);
+}
+
+button:focus {
+  outline: 2px solid var(--hover-color);
+  outline-offset: 2px;
+}
+
+button.danger {
+  background-color: var(--danger-color);
+}
+
+button.danger:hover {
+  background-color: var(--danger-hover-color);
+}
+
+/* Inputs and Selects */
+input,
+select {
+  padding: var(--padding);
+  font-size: 0.9rem;
+  border: 1px solid var(--input-border-color);
+  border-radius: var(--border-radius);
+  width: auto;
+  box-sizing: border-box;
+  margin-right: 10px;
+}
+
+input:focus,
+select:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Form Layout */
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+form input,
+form select {
+  flex: 1;
+  min-width: 150px;
+}
+
+form button {
+  flex: 0;
+}
+
+/* Grid Action Buttons */
+.grid-action-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.grid-action-buttons button {
+  padding: 6px 10px;
+  font-size: 12px;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.grid-action-buttons .edit-button {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.grid-action-buttons .edit-button:hover {
+  background-color: var(--hover-color);
+}
+
+grid-action-buttons .delete-button {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.grid-action-buttons .delete-button:hover {
+  background-color: var(--danger-hover-color);
 }
