@@ -6,6 +6,7 @@ import CustomerForm from "./CustomerForm";
 
 ModuleRegistry.registerModules([ClientSideRowModelModule]);
 
+// Asiakkaan oletusmuoto
 const INITIAL_CUSTOMER = {
     firstname: "",
     lastname: "",
@@ -17,12 +18,12 @@ const INITIAL_CUSTOMER = {
 };
 
 export default function Customer() {
-    const [customers, setCustomers] = useState([]);
-    const [showAddForm, setShowAddForm] = useState(false);
+    const [customers, setCustomers] = useState([]); 
+    const [showAddForm, setShowAddForm] = useState(false); 
     const [showEditForm, setShowEditForm] = useState(false);
     const [newCustomer, setNewCustomer] = useState(INITIAL_CUSTOMER);
-    const [editCustomer, setEditCustomer] = useState(INITIAL_CUSTOMER);
-    const [editCustomerLink, setEditCustomerLink] = useState("");
+    const [editCustomer, setEditCustomer] = useState(INITIAL_CUSTOMER); 
+    const [editCustomerLink, setEditCustomerLink] = useState(""); 
     const gridRef = useRef(null);
 
     const actionsRenderer = (params) => (
@@ -53,6 +54,7 @@ export default function Customer() {
         },
     ];
 
+    // Asiakastietojen fetchi
     const fetchCustomers = useCallback(() => {
         fetch(`${import.meta.env.VITE_API_BASE_URL}/customers`)
             .then((res) => res.json())
@@ -150,6 +152,7 @@ export default function Customer() {
         setShowEditForm(false);
     };
 
+    // Asiakastiedot CSV-muotoon
     const exportToCSV = () => {
         const csvData = customers.map(({ firstname, lastname, email, phone, streetaddress, postcode, city }) => ({
             firstname,

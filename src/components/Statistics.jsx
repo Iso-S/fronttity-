@@ -9,6 +9,7 @@ export default function Statistics() {
         fetchTrainings();
     }, []);
 
+    // Harkkatietojen fetchi
     const fetchTrainings = async () => {
         try {
             const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/trainings`);

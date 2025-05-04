@@ -1,5 +1,6 @@
 export default function CustomerForm({ customer, onChange, onSubmit, onCancel, title, submitLabel }) {
     return (
+        // Tyylitystä niin että luodaan popup-ikkuna
         <div className="popup-overlay" style={{
             position: 'fixed',
             top: 0,
@@ -12,6 +13,7 @@ export default function CustomerForm({ customer, onChange, onSubmit, onCancel, t
             alignItems: 'center',
             zIndex: 1000
         }}>
+            {/* Lomakkeen sisältävä popup-ikkuna */}
             <div className="popup-form" style={{
                 backgroundColor: 'white',
                 padding: '2rem',

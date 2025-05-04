@@ -12,19 +12,21 @@ export default function Training() {
         customer: "",
     });
     const [customers, setCustomers] = useState([]);
-    const [showAddForm, setShowAddForm] = useState(false);
+    const [showAddForm, setShowAddForm] = useState(false); 
 
+    // Päivämäärän muotoilua
     const dateCellRenderer = (params) => {
         return dayjs(params.value).format("DD.MM.YYYY HH:mm");
     };
 
     const [columnDefs] = useState([
-        { field: "activity", sortable: true, filter: true, floatingFilter: true, flex: 2 },
-        { field: "duration", sortable: true, filter: true, floatingFilter: true, flex: 2 },
-        { field: "date", sortable: true, filter: true, floatingFilter: true, cellRenderer: dateCellRenderer, flex: 2 },
+        { field: "activity", sortable: true, filter: true, floatingFilter: true, flex: 2 }, // Aktiviteetti
+        { field: "duration", sortable: true, filter: true, floatingFilter: true, flex: 2 }, // Kesto
+        { field: "date", sortable: true, filter: true, floatingFilter: true, cellRenderer: dateCellRenderer, flex: 2 }, // Päivämäärä
         {
             field: "customer",
             valueGetter: (params) => {
+                // Asiakkaan nimen yhdistäminen
                 return params.data.firstname && params.data.lastname
                     ? `${params.data.firstname} ${params.data.lastname}`
                     : "N/A or not available";
@@ -35,7 +37,7 @@ export default function Training() {
             flex: 3,
         },
         {
-            headerName: "Actions",
+            headerName: "Actions", // Tällä hetkellä vain Delete
             cellRenderer: (params) => (
                 <button
                     onClick={() => deleteTraining(params.data)}
@@ -69,6 +71,7 @@ export default function Training() {
             const trainingsWithCustomers = await Promise.all(
                 trainings.map(async (training) => {
                     try {
+                        // Jokaisen harkan kohdalta yritetään hakea asiakastiedot
                         if (training._links && training._links.customer && training._links.customer.href) {
                             const customerUrl = training._links.customer.href;
                             const customerResponse = await fetch(customerUrl);
@@ -98,6 +101,7 @@ export default function Training() {
         }
     };
 
+    // Asiakastietojen hakeminen
     const getCustomers = async () => {
         try {
             const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/customers`);
@@ -119,7 +123,7 @@ export default function Training() {
             });
 
             if (response.ok) {
-                getTrainings();
+                getTrainings(); 
                 setNewTraining({ activity: "", duration: "", date: "", customer: "" });
                 setShowAddForm(false);
             } else {
@@ -136,7 +140,7 @@ export default function Training() {
                 const response = await fetch(training._links.self.href, { method: "DELETE" });
 
                 if (response.ok) {
-                    getTrainings();
+                    getTrainings(); 
                 } else {
                     console.error("Failed to delete training");
                 }

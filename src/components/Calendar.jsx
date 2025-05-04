@@ -18,10 +18,12 @@ export default function TrainingCalendar() {
             const data = await response.json();
             const trainings = data._embedded.trainings;
 
+            // Muotoillaan harjoitustiedot kalenteritapahtumiksi
             const formattedEvents = await Promise.all(
                 trainings.map(async (training) => {
                     let customerName = "Unknown Customer";
                     if (training._links.customer) {
+                        // Haetaan asiakkaan tiedot harjoitukselle
                         const customerResponse = await fetch(training._links.customer.href);
                         if (customerResponse.ok) {
                             const customerData = await customerResponse.json();
@@ -34,12 +36,11 @@ export default function TrainingCalendar() {
                         start: new Date(training.date),
                         end: new Date(
                             new Date(training.date).getTime() +
-                                training.duration * 60000
+                                training.duration * 60000 // Lisätään harjoituksen kesto minuutteina
                         ),
                     };
                 })
             );
-
             setEvents(formattedEvents);
         } catch (error) {
             console.error("Error fetching trainings:", error);
@@ -54,8 +55,8 @@ export default function TrainingCalendar() {
                 startAccessor="start"
                 endAccessor="end"
                 style={{ height: 400 }}
-                views={["month", "week", "day", "agenda"]}
-                defaultView="week"
+                views={["month", "week", "day", "agenda"]} // Saatavilla olevat näkymät
+                defaultView="week" // Oletuksena viikko
             />
         </div>
     );
