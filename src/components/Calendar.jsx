@@ -47,7 +47,7 @@ export default function TrainingCalendar() {
     };
 
     return (
-        <div style={{ height: 400, width: 1000 }}>
+        <div style={{ height: 480, width: 1000 }}>
             <Calendar
                 localizer={localizer}
                 events={events}
