@@ -1,1 +1,1 @@
-web: npx vite build && npx serve -s dist
+web: bin/boot
