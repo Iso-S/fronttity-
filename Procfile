@@ -1,1 +1,1 @@
-web: npm run build && npm install -g serve && serve -s dist
+web: npx vite build && npx serve -s dist
