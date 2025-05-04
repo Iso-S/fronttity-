@@ -9,6 +9,7 @@ function App() {
           <NavLink className={({ isActive }) => isActive ? 'navcurrent' : 'nav'} to="/customers">CUSTOMER</NavLink>
           <NavLink className={({ isActive }) => isActive ? 'navcurrent' : 'nav'} to="/training">TRAINING</NavLink>
           <NavLink className={({ isActive }) => isActive ? 'navcurrent' : 'nav'} to="/calendar">CALENDAR</NavLink>
+          <NavLink className={({ isActive }) => isActive ? 'navcurrent' : 'nav'} to="/statistics">STATISTICS</NavLink>
         </div>
       </div>
       <Outlet />
